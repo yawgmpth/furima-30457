@@ -35,8 +35,8 @@
 |user_id           | references |null: false, foreign_key: true|
 ### Association
 
-- belongs_to :orders
-- belongs_to :users
+- belongs_to :order
+- belongs_to :user
 
 ##  orders テーブル
 
@@ -47,9 +47,9 @@
 
 ### Association
 
-- belongs_to :items
+- belongs_to :item
 - belongs_to :user
-- belongs_to :addresses
+- has_one    :addresses
 
 ## addresses テーブル
 
@@ -61,7 +61,7 @@
 | address        | string     | null: false                    |
 | building       | string     | null: false                    |
 | telephone      | string     | null: false                    |
-| item_id        | references | null: false, foreign_key: true |
+| order_id        | references | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :orders
+- belongs_to :order
