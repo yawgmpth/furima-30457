@@ -1,0 +1,2 @@
+class DeliveryAreaId < ApplicationRecord
+end
