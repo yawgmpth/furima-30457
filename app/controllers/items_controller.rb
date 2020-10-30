@@ -23,10 +23,13 @@ class ItemsController < ApplicationController
   private
 
   def items_params
+    
     params.require(:item).permit(
+      :image,
       :name,
       :description,
       :category_id,
+      :condition_id,
       :delivery_cost_id,
       :delivery_area_id,
       :delivery_day_id,
