@@ -6,15 +6,15 @@ class Item < ApplicationRecord
  
   with_options presence: true do
   
-    validates :name,        
-    validates :description,        
-    validates :category_id,
-    validates :condition_id,
-    validates :delivery_cost_id,
-    validates :delivery_area_id,
-    validates :delivery_day_id,
+    validates :name    
+    validates :description     
+    validates :category_id
+    validates :condition_id
+    validates :delivery_cost_id
+    validates :delivery_area_id
+    validates :delivery_day_id
     validates :price, numericality: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, greater_than: 299, less_than: 100000000  }
-    validates :user,
+    validates :user
     
   end 
 
