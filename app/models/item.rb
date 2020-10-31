@@ -11,6 +11,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_area
   belongs_to_active_hash :delivery_day
 
+  validates :image, presence: true, unless: :was_attached?
+
+  def was_attached?
+    image.attached?
+  end
+
   with_options presence: true do
     validates :name
     validates :description

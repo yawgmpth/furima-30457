@@ -6,7 +6,7 @@ describe Item do
 
   describe '商品の出品' do
     context '商品出品がうまくいくとき' do
-      it 'nameとdescription,categoryとcondition,delivery_costとdelivery_areaとdelivery_dayが存在すれば登録できる' do
+      it 'imageとnameとdescription,categoryとcondition,delivery_costとdelivery_areaとdelivery_dayが存在すれば登録できる' do
         expect(@item).to be_valid
       end
     end
@@ -58,10 +58,20 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
-      it 'priceの範囲は300~999.999.999であること' do
-        @item.price = '299~1000000000'
+      it 'priceが299以下だと保存できない' do
+        @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include('Price must be greater than 299')
+      end
+      it 'priceが1000000000以上だとと保存できない' do
+        @item.price = 1_000_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be less than 100000000')
+      end
+      it 'imageが空だと保存できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
     end
   end
