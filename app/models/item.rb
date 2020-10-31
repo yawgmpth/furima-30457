@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   belongs_to :user
-  #  belongs_to_active_hash :category,:condition,:delivery_cost,:delivery_area,:delivery_day
+  # belongs_to_active_hash :category,:condition,:delivery_cost,:delivery_area,:delivery_day
   
   with_options presence: true do
   
