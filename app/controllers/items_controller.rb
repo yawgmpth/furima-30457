@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -36,6 +36,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
 
   private
 
@@ -52,8 +57,6 @@ class ItemsController < ApplicationController
       :price
     ).merge(user_id: current_user.id)
   end
-
-
 
 
   def set_item
