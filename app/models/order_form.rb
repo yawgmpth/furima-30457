@@ -1,13 +1,13 @@
 class OrderForm
   include ActiveModel::Model
  
-  attr_accessor :user_id, :item_id,:post_code ,:prefectures_id,:city ,:address ,:building,:telephone ,:order_id
+  attr_accessor :user_id, :item_id,:post_code , :delivery_area_id,:city ,:address ,:building,:telephone ,:order_id
   
     with_options presence: true do
     
     validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
   
-    validates :prefectures_id
+    validates :delivery_area_id
     validates :city
     validates :address
     validates :building
@@ -15,11 +15,11 @@ class OrderForm
     end
   
     def save
-        order = Oder.create(user_id: user_id, item_id: item_id)
+        order = Order.create(user_id: user_id, item_id: item_id)
       
-        Addresses.create( 
+        Address.create( 
         post_code: post_code, 
-        prefectures_id: prefectures_id,
+        delivery_area_id: delivery_area_id,
         city: city,
         address: address,
         building: building,

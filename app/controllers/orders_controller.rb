@@ -5,8 +5,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    
-    @order_form = OrderForm.new(order_prams)
+    @order_form = OrderForm.new(orders_params)
+    @order_form .save
+    redirect_to root_path
   end 
 
   private
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
   def orders_params
     params.require(:order_form).permit(
       :post_code,
-      :prefectures_id, 
+      :delivery_area_id, 
       :city,
       :address,
       :building,
