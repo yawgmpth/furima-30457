@@ -5,14 +5,14 @@ class OrderForm
   
     with_options presence: true do
     
-    validates :post_code { with: /\A\d{3}[-]\d{4}\z/ }
+    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
   
     validates :prefectures_id
     validates :city
     validates :address
     validates :building
-    validates :telephone { with: /\A\d{11}\z/ } 
-    
+    validates :telephone, format: { with: /\A\d{11}\z/ } 
+    end
   
     def save
         order = Oder.create(user_id: user_id, item_id: item_id)
