@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-  @order_form = OrderForm.new(order_prams)
+    
+    @order_form = OrderForm.new(order_prams)
   end 
 
   private
