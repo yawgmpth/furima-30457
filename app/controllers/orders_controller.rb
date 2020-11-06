@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order, only: [:index]
   def index
-    @order_form = OrderForm.new
   end
 
   def create

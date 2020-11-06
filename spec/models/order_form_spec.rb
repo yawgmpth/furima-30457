@@ -9,7 +9,11 @@ describe OrderForm do
       it '入力項目が全て正しく入力された時購入に成功する' do
         expect(@order_form).to be_valid
       end
-    end
+      it '建物名が空でも購入できること' do
+       @order_form.building = ''
+        expect(@order_form).to be_valid
+      end
+     end
 
     context '商品の購入がうまくいかないとき' do
       it 'tokenが空だと購入出来ない' do
