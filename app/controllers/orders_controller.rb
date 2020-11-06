@@ -18,19 +18,17 @@ class OrdersController < ApplicationController
   end
 
   private
-  
-  def set_order
-  @order_form = OrderForm.new
-  if current_user.id == @item.user_id
-    redirect_to root_path
-  elsif @item.order
-    redirect_to root_path
-  end
-end
 
-    
-    
-    def orders_params
+  def set_order
+    @order_form = OrderForm.new
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    elsif @item.order
+      redirect_to root_path
+    end
+  end
+
+  def orders_params
     params.require(:order_form).permit(
       :post_code,
       :delivery_area_id,
@@ -47,7 +45,7 @@ end
   end
 
   def pay_item
-    Payjp.api_key = Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: orders_params[:token],
